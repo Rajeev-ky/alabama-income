@@ -1,0 +1,9 @@
+---
+title: "Analysis of Income for Alabama State"
+---
+
+```{r}
+
+```
+
+
