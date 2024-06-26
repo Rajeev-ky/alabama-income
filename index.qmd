@@ -1,9 +1,94 @@
 ---
 title: "Analysis of Income for Alabama State"
+execute: 
+  echo: false
 ---
 
+Income in Alabama state vary as per households and counties. The following data was pulled from Census Bureau. Then, the relevant variables were extracted to analyse the income of Alabama State and its counties. Mean and Median incomes are measured in Dollars. Household types as per survey data are Families, Households, Married-couple families and Nonfamily households. 20 counties has been surveyed of total 67 counties in Alabama. The analysis found that Shelby county has highest median incomes of all household category, like wise Shelby county has highest mean income for families and Households and Madison county has highest mean income for Married-couple families and Nonfamily households. In general mean incomes were more than median incomes in all counties.
+
 ```{r}
+#| label: setup
+#| message: false
+#| 
+
+library(tidyverse)
+library(readxl)
+library(tidytext)
+```
+
+```{r}
+#| label: plot
+#| 
+
+df <- read_excel("data/df.xlsx", sheet = "data1")
 
 ```
 
+```{r median-income}
+#| label: meadian-income
 
+# Plotting
+ggplot(df, aes(x = reorder_within(county, -median_income, household_types), y = median_income, fill = household_types)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  labs(title = "Median Income by Household Type and County",
+       subtitle = "Shelby county has highest median incomes of all household category",
+       x = "County",
+       y = "Median Income",
+       fill = "Household Type",
+       tag = "Figure 1 : Counties Median Income") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, size = 8), legend.position = "bottom", plot.tag.position = "bottom") +
+  scale_y_continuous(labels = scales::label_dollar(scale = 1/1000, suffix = "K")) +
+  scale_x_reordered() +
+  facet_wrap(~ household_types, scales = "free")
+```
+
+We see in Figure 1 that median incomes vary among counties and that median incomes follow a decreasing trend from Families , Married-couple families, Households, and Nonfamily households.
+
+```{r}
+#| label: mean-income
+#| warning: false
+
+# Plotting
+ggplot(df, aes(x = reorder_within(county, -mean_income, household_types), y = mean_income, fill = household_types)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  labs(title = "Mean Income by Household Type and County",
+       subtitle = "Madison county has highest mean income of all household category",
+       x = "County",
+       y = "Mean Income",
+       fill = "Household Type",
+       tag = "Figure 2 : Counties Mean Income") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90,size = 8), legend.position = "bottom", plot.tag.position = "bottom") +
+  scale_y_continuous(labels = scales::label_dollar(scale = 1/1000, suffix = "K")) +
+  scale_x_reordered() +
+  facet_wrap(~ household_types, scales = "free")
+```
+
+Figure 2 shows that mean income for Married-couple families are higher, however not all counties data are available. Meanwhile mean incomes for households are slightly more than median incomes. May be there are people who earn at higher side, pulling the averages up.
+
+```{r}
+#| warning: false
+
+df |> 
+  ggplot(aes(x = mean_income,y = median_income,color = county)) +
+  geom_point() +
+  facet_wrap(~ household_types, ncol = 2, scales = "free") +
+  guides(color = guide_legend(ncol = 2)) +
+  labs(
+    title = "Mean Income and Median Income of Household by counties",
+    subtitle = "Mean income is more than Median income",
+    caption = "Source: https://data.census.gov/table/ACSST1Y2022.S1901",
+    x = "Mean Income in Thousand Dollars",
+    y = "Median Income in Thousand Dollars",
+    color = "County",
+    tag = "Figure 3 : Mean and Median incomes comparison"
+  ) +
+  scale_x_continuous(labels = scales::label_dollar(scale = 1/1000, suffix = "K")) +
+  scale_y_continuous(labels = scales::label_dollar(scale = 1/1000, suffix = "K")) +
+  theme(
+    axis.text = element_text(size = 5), plot.tag.position = "bottom"
+  )
+```
+
+The relation between medain and mean income as shown in Figure 3 is positively correlated. In plot we see that in general mean incomes are more than median incomes of the counties.
