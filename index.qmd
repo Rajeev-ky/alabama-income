@@ -78,7 +78,7 @@ df |>
   labs(
     title = "Mean Income and Median Income of Household by counties",
     subtitle = "Mean income is more than Median income",
-    caption = "Source: https://data.census.gov/table/ACSST1Y2022.S1901",
+    caption = "Source: https://data.census.gov",
     x = "Mean Income in Thousand Dollars",
     y = "Median Income in Thousand Dollars",
     color = "County",
