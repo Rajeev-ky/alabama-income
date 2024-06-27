@@ -2,6 +2,7 @@
 title: "Analysis of Income for Alabama State"
 execute: 
   echo: false
+  warning: false
 ---
 
 Income in Alabama state vary as per households and counties. The following data was pulled from Census Bureau. Then, the relevant variables were extracted to analyse the income of Alabama State and its counties. Mean and Median incomes are measured in Dollars. Household types as per survey data are Families, Households, Married-couple families and Nonfamily households. 20 counties has been surveyed of total 67 counties in Alabama. The analysis found that Shelby county has highest median incomes of all household category, like wise Shelby county has highest mean income for families and Households and Madison county has highest mean income for Married-couple families and Nonfamily households. In general mean incomes were more than median incomes in all counties.
@@ -92,3 +93,37 @@ df |>
 ```
 
 The relation between median and mean income as shown in Figure 3 is positively correlated. In plot we see that in general mean incomes are more than median incomes of the counties.
+
+Moreover consolidating all counties household income by the level of income, it was found that majority of the population earn at higher side which is supported by the plots in figure 4 where Families, households, and Married-couple families are right skewed suggesting that people do earn at higher side of the income level shown in x axis. However Nonfamily households plot shows left skewed data which suggest more people earn at lower side of the income level.
+
+
+```{r}
+#| label: plot2
+
+df2 <- read_excel("data/df.xlsx", sheet = "data2")
+income_levels <- c("Less than $10,000", "$10,000 to $14,999", "$15,000 to $24,999", "$25,000 to $34,999", "$35,000 to $49,999", "$50,000 to $74,999", "$75,000 to $99,999", "$100,000 to $149,999", "$150,000 to $199,999", "$200,000 or more")
+
+```
+
+```{r}
+#| label: household-income-level
+
+df2 |> 
+  mutate(
+  total = 3414937, 
+  .before = total_population, 
+  per = individual_population/total,
+  income_cat = fct(income_cat, levels = income_levels)) |>
+  ggplot(aes(x = income_cat, y = per, fill = household_types)) +
+  geom_col() +
+  theme_minimal() +
+  facet_wrap(~ household_types, scales = "free") +
+  labs(title = "Percentage of Population earning by Household and Income Level.",
+       subtitle = "Families, Households and Married-couple families earn at higher side.",
+       x = "Income Levels in Dollars",
+       y = "Percentage of Population"
+       ) +
+  theme(axis.text.x = element_text(angle = 90, size = 6), legend.position = "none") +
+  scale_y_continuous(labels = scales::label_percent())
+```
+
