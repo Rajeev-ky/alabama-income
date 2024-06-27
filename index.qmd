@@ -38,7 +38,7 @@ ggplot(df, aes(x = reorder_within(county, -median_income, household_types), y = 
        x = "County",
        y = "Median Income",
        fill = "Household Type",
-       tag = "Figure 1 : Counties Median Income") +
+       tag = "Figure 1") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, size = 8), legend.position = "bottom", plot.tag.position = "bottom") +
   scale_y_continuous(labels = scales::label_dollar(scale = 1/1000, suffix = "K")) +
@@ -62,7 +62,7 @@ ggplot(df, aes(x = reorder_within(county, -mean_income, household_types), y = me
        x = "County",
        y = "Mean Income",
        fill = "Household Type",
-       tag = "Figure 2 : Counties Mean Income") +
+       tag = "Figure 2") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90,size = 8), legend.position = "bottom", plot.tag.position = "bottom") +
   scale_y_continuous(labels = scales::label_dollar(scale = 1/1000, suffix = "K")) +
@@ -89,7 +89,7 @@ df |>
     x = "Mean Income in Thousand Dollars",
     y = "Median Income in Thousand Dollars",
     color = "County",
-    tag = "Figure 3 : Mean and Median incomes comparison"
+    tag = "Figure 3"
   ) +
   scale_x_continuous(labels = scales::label_dollar(scale = 1/1000, suffix = "K")) +
   scale_y_continuous(labels = scales::label_dollar(scale = 1/1000, suffix = "K")) +
@@ -130,9 +130,10 @@ df2 |>
   labs(title = "Percentage of Population earning by Household and Income Level.",
        subtitle = "Families, Households and Married-couple families earn at higher side.",
        x = "Income Levels in Dollars",
-       y = "Percentage of Population"
+       y = "Percentage of Population",
+       tag = "Figure 4"
        ) +
-  theme(axis.text.x = element_text(angle = 90, size = 6), legend.position = "none") +
+  theme(axis.text.x = element_text(angle = 90, size = 6), legend.position = "none", plot.tag.position = "bottom") +
   scale_y_continuous(labels = scales::label_percent())
 ```
 
