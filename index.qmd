@@ -7,6 +7,8 @@ execute:
 
 Income in Alabama state vary as per households and counties. The following data was pulled from Census Bureau. Then, the relevant variables were extracted to analyse the income of Alabama State and its counties. Mean and Median incomes are measured in Dollars. Household types as per survey data are Families, Households, Married-couple families and Nonfamily households. 20 counties has been surveyed of total 67 counties in Alabama. The analysis found that Shelby county has highest median incomes of all household category, like wise Shelby county has highest mean income for families and Households and Madison county has highest mean income for Married-couple families and Nonfamily households. In general mean incomes were more than median incomes in all counties.
 
+## Median Income
+
 ```{r}
 #| label: setup
 #| message: false
@@ -46,6 +48,8 @@ ggplot(df, aes(x = reorder_within(county, -median_income, household_types), y = 
 
 We see in Figure 1 that median incomes vary among counties and that median incomes follow a decreasing trend from Families , Married-couple families, Households, and Nonfamily households.
 
+## Mean Income
+
 ```{r}
 #| label: mean-income
 #| warning: false
@@ -67,6 +71,8 @@ ggplot(df, aes(x = reorder_within(county, -mean_income, household_types), y = me
 ```
 
 Figure 2 shows that mean income for Married-couple families are higher, however not all counties data are available. Meanwhile mean incomes for households are slightly more than median incomes. May be there are people who earn at higher side, pulling the averages up.
+
+## Relation between Median and Mean Income
 
 ```{r}
 #| warning: false
@@ -94,7 +100,10 @@ df |>
 
 The relation between median and mean income as shown in Figure 3 is positively correlated. In plot we see that in general mean incomes are more than median incomes of the counties.
 
-Moreover consolidating all counties household income by the level of income, it was found that majority of the population earn at higher side which is supported by the plots in figure 4 where Families, households, and Married-couple families are right skewed suggesting that people do earn at higher side of the income level shown in x axis. However Nonfamily households plot shows left skewed data which suggest more people earn at lower side of the income level.
+
+## Analyzing Income by Households and Income Level
+
+Consolidating all counties household income by the level of income, it was found that majority of the population earn at higher side which is supported by the plots in figure 4 where Families, households, and Married-couple families are right skewed suggesting that people do earn at higher side of the income level shown in x axis. However Nonfamily households plot shows left skewed data which suggest more people earn at lower side of the income level.
 
 
 ```{r}
