@@ -95,7 +95,7 @@ df |>
   scale_x_continuous(labels = scales::label_dollar(scale = 1/1000, suffix = "K")) +
   scale_y_continuous(labels = scales::label_dollar(scale = 1/1000, suffix = "K")) +
   theme(
-    axis.text = element_text(size = 5), plot.tag.position = "bottom", legend.position = ""
+    axis.text = element_text(size = 7, face = "bold"), plot.tag.position = "bottom", legend.position = ""
   )
 ```
 
@@ -134,7 +134,7 @@ df2 |>
        y = "Percentage of Population",
        tag = "Figure 4"
        ) +
-  theme(axis.text.x = element_text(angle = 90, size = 6), legend.position = "none", plot.tag.position = "bottom") +
+  theme(axis.text.x = element_text(angle = 90, size = 6, face = "bold"), legend.position = "none", plot.tag.position = "bottom") +
   scale_y_continuous(labels = scales::label_percent())
 ```
 
