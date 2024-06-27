@@ -81,6 +81,7 @@ df |>
   ggplot(aes(x = mean_income,y = median_income,color = county)) +
   geom_point() +
   facet_wrap(~ household_types, ncol = 2, scales = "free") +
+  theme_minimal() +
   guides(color = guide_legend(ncol = 2)) +
   labs(
     title = "Mean Income and Median Income of Household by counties",
@@ -94,7 +95,7 @@ df |>
   scale_x_continuous(labels = scales::label_dollar(scale = 1/1000, suffix = "K")) +
   scale_y_continuous(labels = scales::label_dollar(scale = 1/1000, suffix = "K")) +
   theme(
-    axis.text = element_text(size = 5), plot.tag.position = "bottom"
+    axis.text = element_text(size = 5), plot.tag.position = "bottom", legend.position = ""
   )
 ```
 
