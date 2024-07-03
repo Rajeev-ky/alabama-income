@@ -92,3 +92,5 @@ df |>
 ```
 
 The relation between median and mean income as shown in Figure 3 is positively correlated. In plot we see that in general mean incomes are more than median incomes of the counties.
+
+Hello

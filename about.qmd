@@ -7,5 +7,3 @@ Hi ! I am Rajeev Kumar Yadav interested in data science work. You can visit my [
 This project analyses household income of Alabama state which includes 20 counties. The data was downloaded from Census Bureau Data and has information for 1 year median and mean income. Data can be reached [here](https://data.census.gov/table/ACSST1Y2022.S1901?t=Income%20and%20Poverty&g=040XX00US01,01$0500000&moe=false). I have tried to analyse how the counties differ in the income and that how median and mean income relate.
 
 This project was created as a part of [Kane’s Data Science Bootcamp](https://bootcamp.davidkane.info/).
-
-Hi there
