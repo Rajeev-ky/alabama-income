@@ -7,3 +7,5 @@ The dataset used in this project was sourced from Census Bureau Data. If you wan
 The dataset was cleaned before used for analysis. Not all parameters from the dataset was used. Data was picked on selective basis for analysis, only data related to total population, mean income and median income for counties were considered for this project. I have also tried to present the analysis by using income interval from the data with respect to the population of respective counties.
 
 The dataset contains information about 20 counties of 67 total counties in Alabama. May be ACS just conducted survey for 20 States only.
+
+hi
